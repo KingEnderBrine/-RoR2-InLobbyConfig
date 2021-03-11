@@ -7,9 +7,10 @@ namespace InLobbyConfig.Fields
 {
     public static class ConfigFieldUtilities
     {
-        public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName, bool tryToFindEnabledField = true) => CreateFromBepInExConfigFile(file, displayName, tryToFindEnabledField, true);
+        public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName) => CreateFromBepInExConfigFile(file, displayName, true, true);
+        public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName, bool tryToFindEnabledField) => CreateFromBepInExConfigFile(file, displayName, tryToFindEnabledField, true);
 
-        public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName, bool tryToFindEnabledField = true, bool tryToFindSectionEnabledField = true)
+        public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName, bool tryToFindEnabledField, bool tryToFindSectionEnabledField)
         {
             var entry = new ModConfigEntry
             {

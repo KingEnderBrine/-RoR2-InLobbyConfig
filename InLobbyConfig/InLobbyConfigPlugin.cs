@@ -12,7 +12,7 @@ namespace InLobbyConfig
     [R2APISubmoduleDependency(nameof(LanguageAPI))]
     [NetworkCompatibility(CompatibilityLevel.NoNeedForSync)]
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.2.0")]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.2.1")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }

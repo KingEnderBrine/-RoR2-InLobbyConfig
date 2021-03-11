@@ -15,7 +15,9 @@ var configEntry = InLobbyConfig.Fields.ConfigFieldUtilities.CreateFromBepInExCon
 InLobbyConfig.ModConfigCatalog.Add(configEntry);
 ```
 There is a special field. If your config has a `bool` field called `Enabled` (ignored case) it will be shown next to the mod name like so:
+
 ![](https://cdn.discordapp.com/attachments/706089456855154778/779342121852600380/unknown.png)
+
 This behavior can be disabled if you add `false` to parameters for `CreateFromBepInExConfigFile`.
 
 Or you can create `InLobbyConfig.ModConfigEntry` and add fields and section manually 
@@ -44,6 +46,7 @@ InLobbyConfig.ModConfigCatalog.Add(configEntry);
 |Collection|SelectListField|
 
 Or you can create your own `ConfigField` with your own prefab, for example:
+
 ![](https://cdn.discordapp.com/attachments/706089456855154778/779332991742771237/unknown.png)
 
 ### Field constructor parameters description
@@ -82,6 +85,10 @@ Mandatory things that you need to create a custom config field:
 From this point, you can do whatever you want. For examples of how I set up fields, you can go to [InLobbyConfig GitHub](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig) or [ArtifactsRandomizer GitHub](https://github.com/KingEnderBrine/-RoR2-ArtifactsRandomizer).
 
 # Changelog
+**1.2.1**
+
+* Fixed `InLobbyConfig.Fields.ConfigFieldUtilities.CreateFromBepInExConfigFile()` parameters
+
 **1.2.0**
 
 * Added search for select collection dropdown.

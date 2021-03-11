@@ -1,6 +1,6 @@
 {
     "name": "InLobbyConfig",
-    "version_number": "1.2.0",
+    "version_number": "1.2.1",
     "website_url": "https://github.com/KingEnderBrine/-RoR2-InLobbyConfig",
     "description": "Adds an ability to edit configs for mods (that support this) inside a lobby",
     "dependencies": [
