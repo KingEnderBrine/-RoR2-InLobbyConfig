@@ -1,5 +1,4 @@
-﻿using R2API;
-using System.Collections.Generic;
+﻿using RoR2;
 
 namespace InLobbyConfig
 {
@@ -7,29 +6,19 @@ namespace InLobbyConfig
     {
         public const string IN_LOBBY_CONFIG_POPOUT_PANEL_NAME = nameof(IN_LOBBY_CONFIG_POPOUT_PANEL_NAME);
 
-        public static void AddLanguageTokens()
+        public static void LoadStrings(On.RoR2.Language.orig_LoadStrings orig, Language self)
         {
-            AddEnglish();
-            AddRussian();
-        }
+            orig(self);
 
-        private static void AddEnglish()
-        {
-            var dict = new Dictionary<string, string>
+            switch (self.name.ToLower())
             {
-                [IN_LOBBY_CONFIG_POPOUT_PANEL_NAME] = "Mods configuration"
-            };
-            LanguageAPI.Add(dict);
-            LanguageAPI.Add(dict, "en");
-        }
-
-        private static void AddRussian()
-        {
-            var dict = new Dictionary<string, string>
-            {
-                [IN_LOBBY_CONFIG_POPOUT_PANEL_NAME] = "Конфигурация модов"
-            };
-            LanguageAPI.Add(dict, "RU");
+                case "ru":
+                    self.SetStringByToken(IN_LOBBY_CONFIG_POPOUT_PANEL_NAME, "Конфигурация модов");
+                    break;
+                default:
+                    self.SetStringByToken(IN_LOBBY_CONFIG_POPOUT_PANEL_NAME, "Mods configuration");
+                    break;
+            }
         }
     }
 }

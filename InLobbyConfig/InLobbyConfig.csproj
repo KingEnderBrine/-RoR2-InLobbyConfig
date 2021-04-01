@@ -19,7 +19,7 @@
   
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\CommonLibs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\CommonLibs\Assembly-CSharp.refstub.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\..\CommonLibs\BepInEx.dll</HintPath>
@@ -36,9 +36,6 @@
     <Reference Include="MonoMod.Utils">
       <HintPath>..\..\CommonLibs\MonoMod.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="R2API">
-      <HintPath>..\..\CommonLibs\R2API.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\CommonLibs\Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -52,19 +49,19 @@
       <HintPath>..\..\CommonLibs\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>D:\RoR2 Modding\CommonLibs\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\..\CommonLibs\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>..\..\CommonLibs\UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>D:\RoR2 Modding\CommonLibs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\..\CommonLibs\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\CommonLibs\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>D:\RoR2 Modding\CommonLibs\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\..\CommonLibs\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   

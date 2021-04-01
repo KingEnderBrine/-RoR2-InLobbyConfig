@@ -85,6 +85,10 @@ Mandatory things that you need to create a custom config field:
 From this point, you can do whatever you want. For examples of how I set up fields, you can go to [InLobbyConfig GitHub](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig) or [ArtifactsRandomizer GitHub](https://github.com/KingEnderBrine/-RoR2-ArtifactsRandomizer).
 
 # Changelog
+**1.3.0**
+
+* Removed r2api dependency
+
 **1.2.1**
 
 * Fixed `InLobbyConfig.Fields.ConfigFieldUtilities.CreateFromBepInExConfigFile()` parameters
