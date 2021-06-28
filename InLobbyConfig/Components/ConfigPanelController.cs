@@ -182,6 +182,7 @@ namespace InLobbyConfig.Components
                 return;
             }
             var survivorGrid = panel.Find(survivorGridName);
+
             CachedPrefab = AssetBundleHelper.LoadPrefab("ConfigPanel");
 
             CachedPrefab.GetComponent<Image>().sprite = panel.Find("BorderImage").GetComponent<Image>().sprite;

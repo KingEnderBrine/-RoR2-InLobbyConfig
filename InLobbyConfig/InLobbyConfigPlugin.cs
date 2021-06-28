@@ -5,11 +5,9 @@ using System.Security.Permissions;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
-[assembly: R2API.Utils.ManualNetworkRegistration]
-[assembly: EnigmaticThunder.Util.ManualNetworkRegistration]
 namespace InLobbyConfig
 {
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.3.0")]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.3.1")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }
