@@ -85,6 +85,10 @@ Mandatory things that you need to create a custom config field:
 From this point, you can do whatever you want. For examples of how I set up fields, you can go to [InLobbyConfig GitHub](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig) or [ArtifactsRandomizer GitHub](https://github.com/KingEnderBrine/-RoR2-ArtifactsRandomizer).
 
 # Changelog
+**1.3.2**
+
+* Small inegration with `ScrollableLobbyUI` if it's installed
+
 **1.3.1**
 
 * Fixed an issue when using gamepad selecting InLobbyConfig button would bug out the lobby so you couldn't select anything except difficulty/artifacts.

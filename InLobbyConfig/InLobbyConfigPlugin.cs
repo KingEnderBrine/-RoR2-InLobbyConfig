@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using System.Security;
 using System.Security.Permissions;
@@ -7,15 +8,19 @@ using System.Security.Permissions;
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 namespace InLobbyConfig
 {
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.3.1")]
+    [BepInDependency("com.KingEnderBrine.ScrollableLobbyUI", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.3.2")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }
         internal static ManualLogSource InstanceLogger { get => Instance?.Logger; }
+        internal static bool IsScrollableLobbyUILoaded { get; private set; }
 
         private void Awake()
         {
             Instance = this;
+
+            IsScrollableLobbyUILoaded = Chainloader.PluginInfos.ContainsKey("com.KingEnderBrine.ScrollableLobbyUI");
 
             AssetBundleHelper.LoadAssetBundle();
 

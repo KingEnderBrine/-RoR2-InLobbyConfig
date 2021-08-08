@@ -2,6 +2,7 @@
 using RoR2.UI.SkinControllers;
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,12 @@ namespace InLobbyConfig.Components
             var layoutElement = contentContainer.gameObject.AddComponent<LayoutElement>();
             layoutElement.minHeight = 700;
 
+            //If SLUI is loaded content container's height is limmited to 425px, changing it to 700
+            if (InLobbyConfigPlugin.IsScrollableLobbyUILoaded)
+            {
+                ModifyIfSLUILoaded(contentContainer);
+            }
+
             contentContainer.gameObject.AddComponent<RectMask2D>();
 
             scrollContent = Instantiate(AssetBundleHelper.LoadPrefab("ScrollContent"), contentContainer.transform);
@@ -71,6 +78,13 @@ namespace InLobbyConfig.Components
             {
                 InitContent();
             }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        private void ModifyIfSLUILoaded(Transform contentTransform)
+        {
+            var dynamicFitter = contentTransform.parent.parent.GetComponent<ScrollableLobbyUI.DynamicContentSizeFitter>();
+            dynamicFitter.maxHeight = 700;
         }
 
         private void TogglePopoutPanel()
