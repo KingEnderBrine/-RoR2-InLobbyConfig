@@ -1,0 +1,20 @@
+{
+    "name": "InLobbyConfig",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "RoR2.dll",
+        "Unity.TextMeshPro.dll",
+        "UnityEngine.UI.dll",
+        "BepInEx.dll",
+        "ScrollableLobbyUI.dll",
+        "MonoMod.RuntimeDetour.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
