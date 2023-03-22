@@ -55,7 +55,7 @@ MonoBehaviour:
   Name: InLobbyConfig
   Description: Adds an ability to edit configs for mods (that support this) inside
     a lobby
-  Version: 1.4.0
+  Version: 1.4.1
   Dependencies:
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
   - {fileID: 11400000, guid: 4543f27c407fc7749ead88313cc5c707, type: 2}

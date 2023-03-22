@@ -37,7 +37,7 @@ namespace InLobbyConfig.FieldControllers
         private IEnumerator DelayedStartCoroutine()
         {
             yield return new WaitForSeconds(0.01f);
-            var value = ConfigField.GetValue().ToString(NumberFormatInfo.InvariantInfo);
+            var value = ConfigField.GetValue().ToString();
             if (value == inputField.text)
             {
                 yield break;
@@ -51,7 +51,7 @@ namespace InLobbyConfig.FieldControllers
             {
                 return;
             }
-            if (!float.TryParse(newValue, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var number))
+            if (!float.TryParse(newValue, out var number))
             {
                 return;
             }
@@ -75,9 +75,9 @@ namespace InLobbyConfig.FieldControllers
                 return;
             }
             var currentValue = ConfigField.GetValue();
-            if (!float.TryParse(newValue, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var number))
+            if (!float.TryParse(newValue, out var number))
             {
-                inputField.text = currentValue.ToString(NumberFormatInfo.InvariantInfo);
+                inputField.text = currentValue.ToString();
             }
             if (currentValue == number)
             {

@@ -16,7 +16,7 @@ using System.Security.Permissions;
 namespace InLobbyConfig
 {
     [BepInDependency("com.KingEnderBrine.ScrollableLobbyUI", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.4.0")]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.4.1")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }
@@ -33,22 +33,7 @@ namespace InLobbyConfig
 
             new Hook(typeof(CharacterSelectController).GetMethod(nameof(CharacterSelectController.Awake), (System.Reflection.BindingFlags)(-1)), typeof(ConfigPanelController).GetMethod(nameof(ConfigPanelController.CharacterSelectControllerAwake), (System.Reflection.BindingFlags)(-1)));
 
-#warning Fix for language, remove when next update is out
-            if (RoR2Application.GetBuildId() == "1.2.2.0")
-            {
-                new Hook(typeof(Language).GetMethod(nameof(Language.SetFolders), (System.Reflection.BindingFlags)(-1)), typeof(InLobbyConfigPlugin).GetMethod(nameof(InLobbyConfigPlugin.LanguageSetFolders), (System.Reflection.BindingFlags)(-1)));
-            }
-            else
-            {
-                Language.collectLanguageRootFolders += CollectLanguageRootFolders;
-            }
-        }
-
-#warning Fix for language, remove when next update is out
-        private static void LanguageSetFolders(Action<Language, IEnumerable<string>> orig, Language self, IEnumerable<string> newFolders)
-        {
-            var dirs = Directory.EnumerateDirectories(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Instance.Info.Location), "Language"), self.name);
-            orig(self, newFolders.Union(dirs));
+            Language.collectLanguageRootFolders += CollectLanguageRootFolders;
         }
 
         private static void CollectLanguageRootFolders(List<string> folders)

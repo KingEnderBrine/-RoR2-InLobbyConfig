@@ -85,6 +85,10 @@ Mandatory things that you need to create a custom config field:
 From this point, you can do whatever you want. For examples of how I set up fields, you can go to [InLobbyConfig GitHub](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig) or [ArtifactsRandomizer GitHub](https://github.com/KingEnderBrine/-RoR2-ArtifactsRandomizer).
 
 # Changelog
+**1.4.1**
+
+* Fixed decimal numbers input for languages that don't use . as delimiter
+
 **1.4.0**
 
 * Fixes for `Survivors of the Void` update
