@@ -1,9 +1,9 @@
 # Description
 This library adds an ability to edit configs for mods (that support this) inside a lobby.
 
-![](https://cdn.discordapp.com/attachments/706089456855154778/779311648838123580/unknown.png)
+![](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig/blob/master/Screenshots/1.png?raw=true)
 
-![](https://cdn.discordapp.com/attachments/706089456855154778/779311244020678656/unknown.png)
+![](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig/blob/master/Screenshots/2.png?raw=true)
 
 # For developers
 Dependency attribute `[BepInDependency("com.KingEnderBrine.InLobbyConfig")]`
@@ -16,7 +16,7 @@ InLobbyConfig.ModConfigCatalog.Add(configEntry);
 ```
 There is a special field. If your config has a `bool` field called `Enabled` (ignored case) it will be shown next to the mod name like so:
 
-![](https://cdn.discordapp.com/attachments/706089456855154778/779342121852600380/unknown.png)
+![](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig/blob/master/Screenshots/3.png?raw=true)
 
 This behavior can be disabled if you add `false` to parameters for `CreateFromBepInExConfigFile`.
 
@@ -47,7 +47,7 @@ InLobbyConfig.ModConfigCatalog.Add(configEntry);
 
 Or you can create your own `ConfigField` with your own prefab, for example:
 
-![](https://cdn.discordapp.com/attachments/706089456855154778/779332991742771237/unknown.png)
+![](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig/blob/master/Screenshots/4.png?raw=true)
 
 ### Field constructor parameters description
 ##### BaseConfigField (BooleanConfigField, EnumConfigField)
@@ -83,48 +83,3 @@ Mandatory things that you need to create a custom config field:
 * Create a prefab that has your `ConfigFieldController` in a root object
 
 From this point, you can do whatever you want. For examples of how I set up fields, you can go to [InLobbyConfig GitHub](https://github.com/KingEnderBrine/-RoR2-InLobbyConfig) or [ArtifactsRandomizer GitHub](https://github.com/KingEnderBrine/-RoR2-ArtifactsRandomizer).
-
-# Changelog
-**1.4.1**
-
-* Fixed decimal numbers input for languages that don't use . as delimiter
-
-**1.4.0**
-
-* Fixes for `Survivors of the Void` update
-
-**1.3.2**
-
-* Small inegration with `ScrollableLobbyUI` if it's installed
-
-**1.3.1**
-
-* Fixed an issue when using gamepad selecting InLobbyConfig button would bug out the lobby so you couldn't select anything except difficulty/artifacts.
-
-**1.3.0**
-
-* Removed r2api dependency
-
-**1.2.1**
-
-* Fixed `InLobbyConfig.Fields.ConfigFieldUtilities.CreateFromBepInExConfigFile()` parameters
-
-**1.2.0**
-
-* Added search for select collection dropdown.
-
-**1.1.0**
-
-* Added select collection field prefab from `ArtifactRandomizer`. 
-
-**1.0.2**
-
-* Mod, section, and field name texts now have an automatic size and will be scaled down to fit more text.
-
-**1.0.1**
-
-* Readme update
-
-**1.0.0**
-
-* Mod release.

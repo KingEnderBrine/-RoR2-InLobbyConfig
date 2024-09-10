@@ -1,6 +1,7 @@
 ﻿using RoR2.UI;
 using RoR2.UI.SkinControllers;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace InLobbyConfig.Components
             var layoutElement = contentContainer.gameObject.AddComponent<LayoutElement>();
             layoutElement.minHeight = 700;
 
-            //If SLUI is loaded content container's height is limmited to 425px, changing it to 700
+            //If SLUI is loaded content container's height is limited to 425px, changing it to 700
             if (InLobbyConfigPlugin.IsScrollableLobbyUILoaded)
             {
                 ModifyIfSLUILoaded(contentContainer);
@@ -137,7 +138,14 @@ namespace InLobbyConfig.Components
         internal static void CharacterSelectControllerAwake(Action<CharacterSelectController> orig, CharacterSelectController self)
         {
             orig(self);
+            self.StartCoroutine(InitConfigPanel(self));
+        }
 
+        private static IEnumerator InitConfigPanel(CharacterSelectController self)
+        {
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            
             var leftHandPanel = self.transform.Find("SafeArea/LeftHandPanel (Layer: Main)");
             var rightHandPanel = self.transform.Find("SafeArea/RightHandPanel");
 
@@ -154,7 +162,7 @@ namespace InLobbyConfig.Components
 
             var cscInputEvents = self.GetComponents<HGGamepadInputEvent>();
 
-            var cscRightInputEventOne = cscInputEvents.First(el => el.actionName == "UISubmenuRight");
+            var cscRightInputEventOne = cscInputEvents.First(el => el.actionName == "UIPageRight");
             cscRightInputEventOne.requiredTopLayer = leftHandPanel.GetComponent<UILayerKey>();
 
             var cscRightInputEventTwo = self.gameObject.AddComponent<HGGamepadInputEvent>();
@@ -164,13 +172,14 @@ namespace InLobbyConfig.Components
             cscRightInputEventTwo.enabledObjectsIfActive = Array.Empty<GameObject>();
 
             var ruleLayout = rightHandPanel.Find("RuleLayoutActive (Layer: Tertiary)");
+            var ruleLayoutLayer = ruleLayout.GetComponent<UILayerKey>();
 
-            var rlLeftInputEvent = ruleLayout.GetComponents<HGGamepadInputEvent>().First(input => input.actionName == "UISubmenuLeft");
+            var rlLeftInputEvent = self.GetComponents<HGGamepadInputEvent>().First(input => input.actionName == "UIPageLeft" && input.requiredTopLayer == ruleLayoutLayer);
 
             var rlRightInputEventOne = ruleLayout.gameObject.AddComponent<HGGamepadInputEvent>();
-            rlRightInputEventOne.actionName = "UISubmenuRight";
+            rlRightInputEventOne.actionName = "UIPageRight";
             rlRightInputEventOne.actionEvent = configPanel.GetComponent<EventHolder>().unityEvent;
-            rlRightInputEventOne.requiredTopLayer = ruleLayout.GetComponent<UILayerKey>();
+            rlRightInputEventOne.requiredTopLayer = ruleLayoutLayer;
             rlRightInputEventOne.enabledObjectsIfActive = Array.Empty<GameObject>();
 
             var rlRightInputEventTwo = ruleLayout.gameObject.AddComponent<HGGamepadInputEvent>();

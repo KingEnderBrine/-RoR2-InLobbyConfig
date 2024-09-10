@@ -47,15 +47,15 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-*Unity/*
-!*Unity/Assets/*
-*Unity/Assets/StreamingAssets/*
-*Unity/Assets/StreamingAssets.meta
-*Unity/Assets/TextMesh Pro
 *Unity/Assets/ThunderKitSettings
-*Unity/Assets/ThunderKitSettings.meta
+*Unity/ThunderKit/
+*Unity/Temp/
+*Unity/Logs/
+*Unity/Library/
+*Unity/ExtraBepInEx/
+*Unity/Packages/**/*.*
 !*Unity/Packages/manifest.json
 !*Unity/Packages/packages-lock.json
 *.blend1
 *.blend1.meta
-!*Unity/Assets
+*Unity/UserSettings

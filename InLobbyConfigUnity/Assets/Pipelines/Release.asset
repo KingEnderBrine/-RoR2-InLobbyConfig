@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8243440840486699024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0d4e3c4bc13394ebd7028d55cb4f82, type: 3}
-  m_Name: DeleteFiles
-  m_EditorClassIdentifier: 
-  Active: 1
-  PerManifest: 1
-  ListType: 0
-  Manifests: []
-  IsFatal: 0
-  Path: <ManifestPluginStaging>/Language
-  SearchPattern: '*.meta'
-  SearchOption: 1
 --- !u!114 &-7428134380289862124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +51,6 @@ MonoBehaviour:
   - {fileID: 114537630434205182}
   - {fileID: 114366308522735304}
   - {fileID: -7428134380289862124}
-  - {fileID: -8243440840486699024}
   - {fileID: 8208089413805109907}
   QuickAccess: 1
   manifest: {fileID: 11400000, guid: 474bf75012673c94a9db68de81771442, type: 2}
@@ -135,9 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Active: 1
   stageDebugDatabases: 1
+  releaseBuild: 1
   assemblyArtifactPath: <AssemblyStaging>
   buildTarget: 5
-  buildTargetGroup: 1
 --- !u!114 &114888345249068578
 MonoBehaviour:
   m_ObjectHideFlags: 1
