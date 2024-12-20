@@ -1,3 +1,7 @@
+**1.6.0**
+
+* Added search button to filter sections by name.
+
 **1.5.0**
 
 * Fixes for `Seekers of the Storm` update.
