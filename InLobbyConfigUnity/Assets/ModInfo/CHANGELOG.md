@@ -1,3 +1,10 @@
+**1.7.0**
+
+* Added support for selecting from an arbitrary list of options with `SelectConfigField`.
+* Added support for `AcceptableValueList<>` when creating options from config file.
+* Added support for `AcceptableValueRange<>` for `int` and `float` when creating options from config file.
+* When selecting enum value from a list you can now search for a value.
+
 **1.6.0**
 
 * Added search button to filter sections by name.

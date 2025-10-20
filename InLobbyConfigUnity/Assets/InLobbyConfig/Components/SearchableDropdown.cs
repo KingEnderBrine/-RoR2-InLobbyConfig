@@ -61,6 +61,11 @@ namespace InLobbyConfig.Components
             }
         }
 
+        public TMP_Text selectText
+        {
+            get => this.m_SelectText;
+        }
+
         public List<OptionData> Options { get; set; } = new List<OptionData>();
 
         [SerializeField]

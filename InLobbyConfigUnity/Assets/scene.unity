@@ -1653,15 +1653,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4108632139770744, guid: 09b87d4bad6d1814d845e085a30ad463, type: 3}
       propertyPath: m_Name
-      value: EnumFieldPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108632139770746, guid: 09b87d4bad6d1814d845e085a30ad463, type: 3}
-      propertyPath: m_MinHeight
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108632139770746, guid: 09b87d4bad6d1814d845e085a30ad463, type: 3}
-      propertyPath: m_PreferredHeight
-      value: 60
+      value: SelectFieldPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 4108632139770747, guid: 09b87d4bad6d1814d845e085a30ad463, type: 3}
       propertyPath: m_Pivot.x

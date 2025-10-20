@@ -6,7 +6,6 @@ namespace InLobbyConfig.Fields
 {
     public class EnumConfigField<T> : EnumConfigField where T : Enum
     {
-        public new IEnumerable<T> Values { get; }
         protected new Action<T> OnValueChangedCallback { get; } 
         protected new Func<T> ValueAccessor { get; }
         public EnumConfigField(string displayName, Func<T> valueAccessor, Action<T> onValueChanged = null) : base(typeof(T), displayName, () => valueAccessor.Invoke())
@@ -32,7 +31,7 @@ namespace InLobbyConfig.Fields
             OnValueChangedCallback?.Invoke(newValue);
         }
 
-        public override void OnValueChanged(Enum newValue)
+        public override void OnValueChanged(object newValue)
         {
             OnValueChangedCallback?.Invoke((T)newValue);
         }

@@ -55,11 +55,16 @@ Or you can create your own `ConfigField` with your own prefab, for example:
 * displayName - name of a field
 * tooltip - text to display when hover over field name.
 * valueAccessor - a function which will be used to retrieve actual value of config.
+* onValueChanged - a function which will be called when the value of a field is changed. Value in config doesn't automatically change, this is up to you what you want to do with the changed value.
+
+##### SelectConfigField
+Same as `BaseConfigField` +
+
+* optionsAccessor - a function which will be used to retrieve available values for selection.
 
 ##### BaseInputConfigField (ColorConfigField, StringConfgiField)
-Same as `BaseConfigFiled` +
+Same as `BaseConfigField` +
 
-* onValueChanged - a function which will be called when the value of a field is changed. Value in config doesn't automatically change, this is up to you what you want to do with the changed value.
 * onEndEdit - a function which will be called when a user ended changing field. Unlike `onValueChange` which called with every change. Value in config doesn't automatically change, this is up to you what you want to do with the changed value.
 
 ##### BaseNumberInputConfigField (IntConfigField, FloatConfigField)

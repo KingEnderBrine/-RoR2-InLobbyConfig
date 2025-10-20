@@ -1,5 +1,6 @@
 ﻿using BepInEx.Configuration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,32 +51,79 @@ namespace InLobbyConfig.Fields
 
         private static IConfigField ProcessConfigRow(ConfigEntryBase configEntry)
         {
-            if (configEntry.BoxedValue is bool)
+            try
             {
-                return CreateBooleanConfigField(configEntry as ConfigEntry<bool>);
+                if (configEntry.Description.AcceptableValues is not null)
+                {
+                    var field = CreateSelectConfigField(configEntry);
+                    if (field != null)
+                    {
+                        return field;
+                    }
+                }
+                if (configEntry.BoxedValue is bool)
+                {
+                    return CreateBooleanConfigField(configEntry as ConfigEntry<bool>);
+                }
+                if (configEntry.BoxedValue is Enum)
+                {
+                    return CreateEnumConfigField(configEntry);
+                }
+                if (configEntry.BoxedValue is int)
+                {
+                    return CreateIntConfigField(configEntry as ConfigEntry<int>);
+                }
+                if (configEntry.BoxedValue is float)
+                {
+                    return CreateFloatConfigField(configEntry as ConfigEntry<float>);
+                }
+                if (configEntry.BoxedValue is string)
+                {
+                    return CreateStringConfigField(configEntry as ConfigEntry<string>);
+                }
+                if (configEntry.BoxedValue is Color)
+                {
+                    return CreateColorConfigField(configEntry as ConfigEntry<Color>);
+                }
             }
-            if (configEntry.BoxedValue is Enum)
+            catch (Exception ex)
             {
-                return CreateEnumConfigField(configEntry);
-            }
-            if (configEntry.BoxedValue is int)
-            {
-                return CreateIntConfigField(configEntry as ConfigEntry<int>);
-            }
-            if (configEntry.BoxedValue is float)
-            {
-                return CreateFloatConfigField(configEntry as ConfigEntry<float>);
-            }
-            if (configEntry.BoxedValue is string)
-            {
-                return CreateStringConfigField(configEntry as ConfigEntry<string>);
-            }
-            if (configEntry.BoxedValue is Color)
-            {
-                return CreateColorConfigField(configEntry as ConfigEntry<Color>);
+                InLobbyConfigPlugin.InstanceLogger.LogError(ex);
             }
 
             return null;
+        }
+
+        private static IConfigField CreateSelectConfigField(ConfigEntryBase configEntry)
+        {
+            var acceptableValues = configEntry.Description.AcceptableValues;
+            if (acceptableValues.GetType().GetGenericTypeDefinition() != typeof(AcceptableValueList<string>).GetGenericTypeDefinition())
+            {
+                return null;
+            }
+
+            var options = new Dictionary<object, string>();
+            var valuesField = acceptableValues.GetType().GetProperty(nameof(AcceptableValueList<string>.AcceptableValues));
+            var values = valuesField.GetValue(acceptableValues) as IList;
+            foreach (var value in values)
+            {
+                options[value] = value?.ToString();
+            }
+
+            return new SelectConfigField(configEntry.Definition.Key, configEntry.Description.Description, ValueAccessor, OptionsAccessor, OnEndEdit);
+
+            IDictionary<object, string> OptionsAccessor()
+            {
+                return options;
+            }
+            object ValueAccessor()
+            {
+                return configEntry.BoxedValue;
+            }
+            void OnEndEdit(object newValue)
+            {
+                configEntry.BoxedValue = newValue;
+            }
         }
 
         private static BooleanConfigField CreateBooleanConfigField(ConfigEntry<bool> configEntry)
@@ -122,6 +170,11 @@ namespace InLobbyConfig.Fields
 
         private static IntConfigField CreateIntConfigField(ConfigEntry<int> configEntry)
         {
+            if (configEntry.Description.AcceptableValues is AcceptableValueRange<int> acceptableValues)
+            {
+                return new IntConfigField(configEntry.Definition.Key, configEntry.Description.Description, ValueAccessor, null, OnEndEdit, acceptableValues.MinValue, acceptableValues.MaxValue);
+            }
+
             return new IntConfigField(configEntry.Definition.Key, configEntry.Description.Description, ValueAccessor, null, OnEndEdit);
 
             int ValueAccessor()
@@ -136,6 +189,11 @@ namespace InLobbyConfig.Fields
 
         private static FloatConfigField CreateFloatConfigField(ConfigEntry<float> configEntry)
         {
+            if (configEntry.Description.AcceptableValues is AcceptableValueRange<float> acceptableValues)
+            {
+                return new FloatConfigField(configEntry.Definition.Key, configEntry.Description.Description, ValueAccessor, null, OnEndEdit, acceptableValues.MinValue, acceptableValues.MaxValue);
+            }
+
             return new FloatConfigField(configEntry.Definition.Key, configEntry.Description.Description, ValueAccessor, null, OnEndEdit);
 
             float ValueAccessor()

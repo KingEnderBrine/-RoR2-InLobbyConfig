@@ -16,17 +16,20 @@ using System.Security.Permissions;
 namespace InLobbyConfig
 {
     [BepInDependency("com.KingEnderBrine.ScrollableLobbyUI", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.5.0")]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.7.0")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }
         internal static ManualLogSource InstanceLogger { get => Instance?.Logger; }
         internal static bool IsScrollableLobbyUILoaded { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             Instance = this;
+        }
 
+        private void Start()
+        {
             IsScrollableLobbyUILoaded = Chainloader.PluginInfos.ContainsKey("com.KingEnderBrine.ScrollableLobbyUI");
 
             AssetBundleHelper.LoadAssetBundle();
