@@ -24,16 +24,20 @@ namespace InLobbyConfig.Fields
                     entry.EnableField = CreateBooleanConfigField(row.Value as ConfigEntry<bool>);
                     continue;
                 }
+
                 if (tryToFindSectionEnabledField && !entry.SectionEnableFields.ContainsKey(row.Key.Section) && row.Key.Key.Equals("sectionEnabled", StringComparison.InvariantCultureIgnoreCase) && row.Value.BoxedValue is bool)
                 {
                     entry.SectionEnableFields[row.Key.Section] = CreateBooleanConfigField(row.Value as ConfigEntry<bool>);
+                    continue;
                 }
+
                 var field = ProcessConfigRow(row.Value);
                 if (field == null)
                 {
                     InLobbyConfigPlugin.InstanceLogger.LogWarning($"Config [{displayName}]. Not found prefab that can be associated with `{row.Key.Key}` field.");
                     continue;
                 }
+
                 if (!entry.SectionFields.TryGetValue(row.Key.Section, out var fields))
                 {
                     fields = entry.SectionFields[row.Key.Section] = new List<IConfigField>();

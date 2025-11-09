@@ -1,3 +1,7 @@
+**1.7.1**
+
+* Fixed an issue where `InLobbyConfig.Fields.ConfigFieldUtilities.CreateFromBepInExConfigFile()` would add enable field for a section twice.
+
 **1.7.0**
 
 * Added support for selecting from an arbitrary list of options with `SelectConfigField`.
