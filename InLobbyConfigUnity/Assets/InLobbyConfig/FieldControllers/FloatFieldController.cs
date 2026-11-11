@@ -12,8 +12,10 @@ namespace InLobbyConfig.FieldControllers
         public TMP_InputField inputField;
         private FloatConfigField ConfigField { get; set; }
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             ConfigField = configField as FloatConfigField;
             if (ConfigField == null)
             {
@@ -37,12 +39,7 @@ namespace InLobbyConfig.FieldControllers
         private IEnumerator DelayedStartCoroutine()
         {
             yield return new WaitForSeconds(0.01f);
-            var value = ConfigField.GetValue().ToString();
-            if (value == inputField.text)
-            {
-                yield break;
-            }
-            inputField.SetTextWithoutNotify(value);
+            RefreshValue();
         }
 
         public void OnValueChanged(string newValue)
@@ -84,6 +81,16 @@ namespace InLobbyConfig.FieldControllers
                 return;
             }
             ConfigField.OnEndEdit(number);
+        }
+
+        protected override void RefreshValue()
+        {
+            var value = ConfigField.GetValue().ToString();
+            if (value == inputField.text)
+            {
+                return;
+            }
+            inputField.SetTextWithoutNotify(value);
         }
     }
 }

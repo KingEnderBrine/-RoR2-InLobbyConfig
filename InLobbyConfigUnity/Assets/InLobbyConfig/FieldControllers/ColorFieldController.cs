@@ -20,8 +20,10 @@ namespace InLobbyConfig.FieldControllers
         private ColorConfigField ConfigField { get; set; }
         private Color32 currentColor;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             ConfigField = configField as ColorConfigField;
             if (ConfigField == null)
             {
@@ -51,22 +53,7 @@ namespace InLobbyConfig.FieldControllers
         {
             yield return new WaitForSeconds(0.01f);
 
-            currentColor = ConfigField.GetValue();
-
-            ProcessColor(currentColor.r, colorR);
-            ProcessColor(currentColor.g, colorG);
-            ProcessColor(currentColor.b, colorB);
-            ProcessColor(currentColor.a, colorA);
-            preview.color = currentColor;
-
-            void ProcessColor(byte color, TMP_InputField inputField)
-            {
-                var textColor = color.ToString();
-                if (textColor != inputField.text)
-                {
-                    inputField.SetTextWithoutNotify(textColor);
-                }
-            }
+            RefreshValue();
         }
 
         public void OnValueChangedR(string newValue) => OnValueChanged(newValue, ColorPart.R); 
@@ -174,6 +161,26 @@ namespace InLobbyConfig.FieldControllers
             }
 
             return false;
+        }
+
+        protected override void RefreshValue()
+        {
+            currentColor = ConfigField.GetValue();
+
+            ProcessColor(currentColor.r, colorR);
+            ProcessColor(currentColor.g, colorG);
+            ProcessColor(currentColor.b, colorB);
+            ProcessColor(currentColor.a, colorA);
+            preview.color = currentColor;
+
+            void ProcessColor(byte color, TMP_InputField inputField)
+            {
+                var textColor = color.ToString();
+                if (textColor != inputField.text)
+                {
+                    inputField.SetTextWithoutNotify(textColor);
+                }
+            }
         }
     }
 }

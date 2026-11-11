@@ -13,8 +13,10 @@ namespace InLobbyConfig.FieldControllers
         private SelectConfigField ConfigField { get; set; }
         private Dictionary<object, string> options;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             ConfigField = configField as SelectConfigField;
             if (ConfigField == null)
             {
@@ -35,9 +37,7 @@ namespace InLobbyConfig.FieldControllers
             dropdown.Options = options.Select(el => new SearchableDropdown.OptionData(el.Key, el.Value)).ToList();
             (dropdown.OnItemSelected ?? (dropdown.OnItemSelected = new SearchableDropdown.DropdownEvent())).AddListener(AddNewItem);
 
-            var value = ConfigField.GetValue();
-            options.TryGetValue(value, out var text);
-            dropdown.selectText.text = text ?? "{Missing option}";
+            RefreshValue();
         }
 
         public void AddNewItem(object value)
@@ -47,6 +47,13 @@ namespace InLobbyConfig.FieldControllers
                 return;
             }
             ConfigField.OnValueChanged(value);
+            options.TryGetValue(value, out var text);
+            dropdown.selectText.text = text ?? "{Missing option}";
+        }
+
+        protected override void RefreshValue()
+        {
+            var value = ConfigField.GetValue();
             options.TryGetValue(value, out var text);
             dropdown.selectText.text = text ?? "{Missing option}";
         }

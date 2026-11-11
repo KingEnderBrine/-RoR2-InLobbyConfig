@@ -21,8 +21,10 @@ namespace InLobbyConfig.FieldControllers
         private readonly List<SelectListItemController> items = new List<SelectListItemController>();
         private Dictionary<object, string> options;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             ConfigField = configField as SelectListField;
             if (ConfigField == null)
             {
@@ -43,11 +45,7 @@ namespace InLobbyConfig.FieldControllers
                 fieldText.text = ConfigField.DisplayName;
             }
 
-            var value = ConfigField.GetValue();
-            foreach (var item in value)
-            {
-                AddNewItem(item, true);
-            }
+            RefreshValue();
         }
 
         public void AddNewItem(object value)
@@ -99,6 +97,19 @@ namespace InLobbyConfig.FieldControllers
         public void ToggleContent()
         {
             contentContainer.gameObject.SetActive(!contentContainer.gameObject.activeSelf);
+        }
+
+        protected override void RefreshValue()
+        {
+            foreach (var item in items)
+            {
+                Destroy(item.gameObject);
+            }
+            items.Clear();
+            foreach (var item in ConfigField.GetValue())
+            {
+                AddNewItem(item, true);
+            }
         }
     }
 }

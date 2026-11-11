@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using InLobbyConfig.FieldControllers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,14 @@ namespace InLobbyConfig.Fields
 {
     public static class ConfigFieldUtilities
     {
+        public static Action OnConfigWindowOpen;
+        public static Action OnConfigWindowClosed;
+
+        public static void RefreshFieldValueInOpenWindow(IConfigField configField)
+        {
+            ConfigFieldController.RefreshValues(configField);
+        }
+
         public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName) => CreateFromBepInExConfigFile(file, displayName, true, true);
         public static ModConfigEntry CreateFromBepInExConfigFile(ConfigFile file, string displayName, bool tryToFindEnabledField) => CreateFromBepInExConfigFile(file, displayName, tryToFindEnabledField, true);
 

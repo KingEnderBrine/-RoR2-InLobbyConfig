@@ -16,7 +16,7 @@ using System.Security.Permissions;
 namespace InLobbyConfig
 {
     [BepInDependency("com.KingEnderBrine.ScrollableLobbyUI", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.7.1")]
+    [BepInPlugin("com.KingEnderBrine.InLobbyConfig", "In Lobby Config", "1.7.2")]
     public class InLobbyConfigPlugin : BaseUnityPlugin
     {
         internal static InLobbyConfigPlugin Instance { get; private set; }

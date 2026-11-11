@@ -11,8 +11,10 @@ namespace InLobbyConfig.FieldControllers
         private BooleanConfigField ConfigField { get; set; }
         private bool skipValueChange;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             ConfigField = configField as BooleanConfigField;
             if (ConfigField == null)
             {
@@ -29,13 +31,7 @@ namespace InLobbyConfig.FieldControllers
                 fieldText.text = ConfigField.DisplayName;
             }
 
-            var value = ConfigField.GetValue();
-            if (value == toggle.isOn)
-            {
-                return;
-            }
-            skipValueChange = true;
-            toggle.isOn = value;
+            RefreshValue();
         }
 
         public void OnValueChanged(bool newValue)
@@ -50,6 +46,18 @@ namespace InLobbyConfig.FieldControllers
                 return;
             }
             ConfigField.OnValueChanged(newValue);
+        }
+
+        protected override void RefreshValue()
+        {
+            var value = ConfigField.GetValue();
+            if (value == toggle.isOn)
+            {
+                return;
+            }
+
+            skipValueChange = true;
+            toggle.isOn = value;
         }
     }
 }

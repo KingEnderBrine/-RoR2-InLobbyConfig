@@ -1,9 +1,11 @@
-﻿using RoR2.UI;
+﻿using InLobbyConfig.Fields;
+using RoR2.UI;
 using RoR2.UI.SkinControllers;
 using System;
 using System.Collections;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -157,7 +159,9 @@ namespace InLobbyConfig.Components
             var configPanel = GameObject.Instantiate(CachedPrefab, self.transform.Find("SafeArea"), false);
             var popoutPanelContainer = rightHandPanel.Find("PopoutPanelContainer");
             
-            var popoutPanel  = GameObject.Instantiate(popoutPanelContainer.Find("PopoutPanelPrefab").gameObject, popoutPanelContainer);
+            var popoutPanel = GameObject.Instantiate(popoutPanelContainer.Find("PopoutPanelPrefab").gameObject, popoutPanelContainer);
+            popoutPanel.AddComponent<PopupWindowBehaviour>();
+            var cancelButton = popoutPanel.transform.Find("Canvas/Main/CancelButton").GetComponent<HGButton>();
             configPanel.GetComponent<ConfigPanelController>().popoutPanel = popoutPanel;
 
             var cscInputEvents = self.GetComponents<HGGamepadInputEvent>();
@@ -218,6 +222,19 @@ namespace InLobbyConfig.Components
                 button.GetComponent<ButtonSkinController>().skinData = buttonSkin;
                 button.transform.Find("BaseOutline").GetComponent<Image>().sprite = baseOutlineSprite;
                 button.transform.Find("HoverOutline").GetComponent<Image>().sprite = hoverOutlineSprite;
+            }
+        }
+
+        private class PopupWindowBehaviour : MonoBehaviour
+        {
+            public void OnEnable()
+            {
+                ConfigFieldUtilities.OnConfigWindowOpen?.Invoke();
+            }
+
+            public void OnDisable()
+            {
+                ConfigFieldUtilities.OnConfigWindowClosed?.Invoke();
             }
         }
     }
